@@ -1,5 +1,10 @@
-from rdkit import Chem
-from rdkit.Chem import AllChem
+try:
+    from rdkit import Chem
+    from rdkit.Chem import AllChem
+except ImportError as exc:
+    raise ImportError(
+        "RDKit is required to run predict_metabolism_cli. Please install the 'rdkit' package."
+    ) from exc
 
 REACTION_RULES = {
     'Aromatic_Hydroxylation': '[c:1][H:2]>>[c:1][O][H:2]',
