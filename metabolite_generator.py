@@ -1,5 +1,10 @@
-from rdkit import Chem
-from rdkit.Chem import AllChem
+try:
+    from rdkit import Chem
+    from rdkit.Chem import AllChem
+except ImportError as exc:
+    raise ImportError(
+        "RDKit is required to run metabolite_generator. Please install the 'rdkit' package."
+    ) from exc
 
 # Simplified apply_reaction function (or copy the more robust one)
 def apply_reaction(reaction_smarts, reactant_smiles_list):

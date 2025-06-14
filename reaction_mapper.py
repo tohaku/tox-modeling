@@ -1,5 +1,10 @@
-from rdkit import Chem
-from rdkit.Chem import AllChem
+try:
+    from rdkit import Chem
+    from rdkit.Chem import AllChem
+except ImportError as exc:
+    raise ImportError(
+        "RDKit is required to run reaction_mapper. Please install the 'rdkit' package."
+    ) from exc
 
 REACTION_RULES = {
     'Amide_Formation': '[C:1](=O)[OH1:2].[N;H2;!$(N=[*]):3]>>[C:1](=O)[N;H1:3].[OH2:2]', # Carboxylic acid + Primary Amine -> Amide + Water
